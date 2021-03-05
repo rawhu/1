@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int main() {
+	int por;
+	int i, j = 0;
+	int sumall = 0;
+	int sum1=0, sum2=0, sum3= 0;
+	printf("sum1 = %d, sum2 = %d, sum3 = %d, sum4 = %d \n", sum1, sum2, sum3, sum4);
+	printf("VVEDITE PORYADOK KVADRATA (RAZMER) \n");
+	scanf("%d", &por);
+	int square[por][por];
+	printf("VVEDITE ZNACHENIYA STROK \n");
+	
+	// Ввод квадрата
+	
+	for (i = 0; i < por; i++) {
+		printf("STROKA %d : \n", i+1);
+		for (j = 0; j < por; j++) {
+			scanf("%d", &square[i][j]);
+		}
+	}
+	
+	// вывод квадрата
+	
+	printf("VASH KVADRAT VIGLYADIT TAK : \n");
+	for (i = 0; i < por; i++) {
+		for (j = 0; j < por; j++) {
+			printf("%d ", square[i][j]);
+		}
+		printf("\n");
+	}
+	
+	// сам алгоритм
+	for (i = 0; i < por; i ++) {
+		for (j = 0; j < por; j++) {
+			sum1 = sum1 + square[i][j];
+		}
+		if (sumall == 0) {
+			sumall = sum1;
+		}
+		if (sum1 != sumall) {
+			break;
+		}
+		//	printf("sum1 na %d iteracii = %d, \n", i+1, sum1);
+		sum1 = 0;
+		for (j = 0; j < por; j++) {
+			sum1 = sum1 + square[j][i];
+		}
+		if (sum1 != sumall) {
+			break;
+		}
+		sum1 = 0;
+		for (j = 0; j < por; j++) {
+			if (i == j) {
+				sum2 = sum2 + square[i][j];
+			}
+			if ( ( (j+1) - (i+1) ) == ( por - (i+1) ) ) {
+				sum3 = sum3 + square[i][j];
+			}
+		}
+		printf("sum2 na %d iteracii = %d, \n", i+1, sum2);	
+		printf("sum3 na %d iteracii = %d, \n", i+1, sum3);		
+	}
+	if ( ((sum2 != sumall) || (sum3 != sumall)) && (sum1 != 0) ) {
+		printf("VASH KVADRAT NE MAGICHESKY \n");
+	}
+	if ( (sum1 == 0) && (sum2 == sumall) && (sum3 == sumall) ) {
+		printf("VASH KVADRAT MAGICHESKY!!!!! POZDRAVLYAEM!!!! \n");
+	}
+	
+	
+	printf("sum1 = %d, sum2 = %d, sum3 = %d, sum1, sum2, sum3);
+	return 0;
+}
